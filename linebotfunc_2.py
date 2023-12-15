@@ -1,23 +1,4 @@
 # coding=utf8
-#======python的函數庫==========
-import time
-#======python的函數庫==========
-
-#======讓render不會睡著======
-import threading 
-import requests
-def wake_up_render():
-    while 1==1:
-        url = 'https://usrlinebot2.onrender.com' + 'render_wake_up'
-        res = requests.get(url)
-        if res.status_code==200:
-            print('喚醒render成功')
-        else:
-            print('喚醒失敗')
-        time.sleep(13*60)
-
-threading.Thread(target=wake_up_render).start()
-#======讓render不會睡著======
 
 from flask import Flask
 app = Flask(__name__)
@@ -35,6 +16,26 @@ handler = WebhookHandler('7c597d52fbcc02e219f288290f7e080b')
 @app.route("/render_wake_up")
 def render_wake_up():
     return "Hey!Wake Up!!"
+
+#======python的函數庫==========
+import time
+#======python的函數庫==========
+
+#======讓render不會睡著======
+import threading 
+import requests
+def wake_up_render():
+    while 1==1:
+        url = 'https://usrlinebot2.onrender.com' + 'render_wake_up'
+        res = requests.get(url)
+        if res.status_code==200:
+            print('喚醒render成功')
+        else:
+            print('喚醒失敗')
+        time.sleep(10*60)
+
+threading.Thread(target=wake_up_render).start()
+#======讓render不會睡著======
 
 @app.route("/callback", methods=['POST'])
 def callback():

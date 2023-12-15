@@ -1,8 +1,28 @@
 # coding=utf8
+#======python的函數庫==========
+import time
+#======python的函數庫==========
+
+#======讓render不會睡著======
+import threading 
+import requests
+def wake_up_render():
+    while 1==1:
+        url = 'https://usrlinebot2.onrender.com' + 'render_wake_up'
+        res = requests.get(url)
+        if res.status_code==200:
+            print('喚醒render成功')
+        else:
+            print('喚醒失敗')
+        time.sleep(13*60)
+
+threading.Thread(target=wake_up_render).start()
+#======讓render不會睡著======
+
 from flask import Flask
 app = Flask(__name__)
 
-from flask import request, abort, render_template
+from flask import request, abort
 from linebot import  LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage,TextSendMessage, ImageSendMessage, StickerSendMessage, LocationSendMessage, QuickReply, QuickReplyButton, MessageAction
@@ -11,6 +31,10 @@ import openai
 
 line_bot_api = LineBotApi('KHGmE87M88v51uL4yvYp6Pk3rwjcIRb8W9zFcJCY7EDZDHVCqfJia8bdquHcH1DCRR2lNE2ZLv5DMVZEgiZtQtvM9uCiTgsPjwpx7zB9sjBtmjkb06rWE1aWnxqLdvtVhCHyOlcSzo0US4ENQeHfDAdB04t89/1O/w1cDnyilFU=')
 handler = WebhookHandler('7c597d52fbcc02e219f288290f7e080b')
+
+@app.route("/render_wake_up")
+def render_wake_up():
+    return "Hey!Wake Up!!"
 
 @app.route("/callback", methods=['POST'])
 def callback():

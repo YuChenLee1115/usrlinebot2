@@ -26,7 +26,7 @@ import threading
 import requests
 def wake_up_render():
     while 1==1:
-        url = 'https://usrlinebot2.onrender.com' + 'render_wake_up'
+        url = 'https://usrlinebot2.onrender.com/' + 'render_wake_up'
         res = requests.get(url)
         if res.status_code==200:
             print('喚醒render成功')

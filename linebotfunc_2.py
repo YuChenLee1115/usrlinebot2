@@ -834,5 +834,24 @@ def handle_message(event):
         except:
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
             
+    elif mtext == 'F' or mtext == "f" or mtext == "製作團隊":
+        try:
+            message = [                
+                TextSendMessage(  #傳送文字
+                    text = "主  編：黃秀端 老師\n策  畫：陳威豪 助理\n指  導：簡有慶 老師（士林庄文史工作室負責人）"
+                ),
+                ImageSendMessage(  #傳送圖片
+                    original_content_url = "https://imgur.com/gUsfrCH.jpg",
+                    preview_image_url = "https://imgur.com/gUsfrCH.jpg"
+                ),
+                ImageSendMessage(  #傳送圖片
+                    original_content_url = "https://imgur.com/iSDD7zQ.jpg",
+                    preview_image_url = "https://imgur.com/iSDD7zQ.jpg"
+                )
+            ]
+            line_bot_api.reply_message(event.reply_token,message)
+        except:
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text='發生錯誤！'))
+            
 if __name__ == "__main__":
     app.run(debug = True , port = 8000)

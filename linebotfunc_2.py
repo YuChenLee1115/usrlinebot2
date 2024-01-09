@@ -92,6 +92,9 @@ def handle_message(event):
                         ),
                         QuickReplyButton(
                             action=MessageAction(label="E.想瞭解農曆七月的重要祭典儀式", text="想瞭解農曆七月的重要祭典儀式")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="F.製作團隊", text="製作團隊")
                         )
                     ]
                 )
